@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  mariadb:
+    image: mariadb:10.9.3
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: apianalyzequartz
+      MARIADB_USER: apianalyze
+      MARIADB_PASSWORD: apianalyze
+    volumes:
+      - ../../src/main/resources/quartz-schema.sql:/docker-entrypoint-initdb.d/quartz-schema.sql
+      - mariadb-analyze:/var/lib/mysql
+      - ./sql:/sql
+
+volumes:
+  mariadb-analyze: 
+
